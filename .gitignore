@@ -1,0 +1,14 @@
+# Dependências
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build e cache
+dist/
+frontend/dist/
+.vite/
+
+# Variáveis de ambiente e sistema
+.env
+.env.local
+.DS_Store
