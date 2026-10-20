@@ -18,7 +18,7 @@ export default {
         dark: {
           bg: '#0A0A0A',      // Preto profundo (Dark Mode principal)
           card: '#121212',    // Cinza quase preto para os Bento Cards
-          text: '#F5F5F7',    // Branco suave para não cansar a vista
+          text: '#F5F5F7',    // Branco suave
           muted: '#A1A1AA',   // Cinza secundário escuro
           border: '#27272A',  // Borda translúcida sutil
         }
