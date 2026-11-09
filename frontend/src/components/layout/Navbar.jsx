@@ -1,16 +1,19 @@
 import React from 'react';
-import { Sun, Moon, Sparkles, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Sun, Moon, Sparkles, ArrowRight, LayoutGrid } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
 export function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/75 dark:bg-[#0A0A0A]/75 border-b border-apple-border dark:border-white/10 transition-colors duration-300">
+    <header className="fixed top-0 w-full z-40 backdrop-blur-xl bg-white/75 dark:bg-[#0A0A0A]/75 border-b border-apple-border dark:border-white/10 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         
-        {/* Lado Esquerdo: Espaço da Logomarca Sem Fundo + Nome Fix Repair */}
-        <a href="#" className="flex items-center gap-3 group">
+        {/* Lado Esquerdo: Logo Fix Repair (clicar volta para a Landing Page) */}
+        <Link to="/" className="flex items-center gap-3 group">
           <div className="w-9 h-9 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center overflow-hidden p-1.5 transition-transform group-hover:scale-105">
             <img 
               src="/logo-fix-repair.png" 
@@ -26,22 +29,29 @@ export function Navbar() {
           <span className="font-semibold text-lg tracking-tight">
             Fix Repair
           </span>
-        </a>
+        </Link>
 
-        {/* Centro: Navegação Limpa */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-apple-muted dark:text-dark-muted">
-          <a href="#como-funciona" className="hover:text-apple-text dark:hover:text-white transition-colors">
-            Experiência
-          </a>
-          <a href="#trilhas" className="hover:text-apple-text dark:hover:text-white transition-colors">
-            Trilhas de Estudo
-          </a>
-          <a href="#cards" className="hover:text-apple-text dark:hover:text-white transition-colors">
-            Cards Rápidos
-          </a>
-        </nav>
+        {/* Centro: Links contextuais */}
+        {!isDashboard ? (
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-apple-muted dark:text-dark-muted">
+            <a href="#como-funciona" className="hover:text-apple-text dark:hover:text-white transition-colors">
+              Experiência
+            </a>
+            <a href="#trilhas" className="hover:text-apple-text dark:hover:text-white transition-colors">
+              Trilhas de Estudo
+            </a>
+            <a href="#cards" className="hover:text-apple-text dark:hover:text-white transition-colors">
+              Cards Rápidos
+            </a>
+          </nav>
+        ) : (
+          <div className="hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 text-apple-muted dark:text-dark-muted">
+            <LayoutGrid className="w-3.5 h-3.5 text-blue-500" />
+            <span>Ambiente do Estudante</span>
+          </div>
+        )}
 
-        {/* Lado Direito: Alternador Dark/Light + CTA */}
+        {/* Lado Direito: Alternador Dark/Light + Botão de Navegação */}
         <div className="flex items-center gap-3">
           <button
             onClick={toggleTheme}
@@ -55,10 +65,22 @@ export function Navbar() {
             )}
           </button>
 
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-apple-text text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-sm">
-            <span>Entrar</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          {isDashboard ? (
+            <Link 
+              to="/"
+              className="px-4 py-2 text-xs sm:text-sm font-medium rounded-full bg-black/5 dark:bg-white/10 hover:opacity-90 transition-all"
+            >
+              Voltar ao Início
+            </Link>
+          ) : (
+            <Link 
+              to="/dashboard"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-apple-text text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-sm"
+            >
+              <span>Entrar</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          )}
         </div>
 
       </div>
