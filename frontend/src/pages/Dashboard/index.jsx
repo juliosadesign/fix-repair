@@ -251,16 +251,16 @@ export function Dashboard() {
                         </span>
                       ) : (
                         <button 
-                          onClick={() => alert(`Na Fase 3, este botão abrirá o Workspace da aula: "${lesson.title}" com o editor de código e a IA na direita!`)}
-                          className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
-                            isCompleted
-                              ? 'bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10'
-                              : 'bg-blue-600 text-white hover:bg-blue-500 shadow-sm'
-                          }`}
-                        >
-                          <span>{isCompleted ? 'Praticar Novamente' : 'Iniciar Atividade'}</span>
-                          <ChevronRight className="w-3.5 h-3.5" />
-                        </button>
+  onClick={() => navigate(`/workspace/${selectedTrack.id}/${lesson.id}`)}
+  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+    isCompleted
+      ? 'bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10'
+      : 'bg-blue-600 text-white hover:bg-blue-500 shadow-sm'
+  }`}
+>
+  <span>{isCompleted ? 'Praticar Novamente' : 'Iniciar Atividade'}</span>
+  <ChevronRight className="w-3.5 h-3.5" />
+</button>
                       )}
                     </div>
                   </div>
