@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import { LessonWorkspace } from './pages/LessonWorkspace/index.jsx';
+import { LessonWorkspace } from './pages/WorkspaceAula/index.jsx';
 
 export default function App() {
   return (
