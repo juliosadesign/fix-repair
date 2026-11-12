@@ -3,9 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
-import { LessonWorkspace } from './pages/LessonWorkspace';
-
-export default function App() {
+import { LessonWorkspace } from './pages/LessonWorkspace/index.jsx';
   return (
     <ThemeProvider>
       <BrowserRouter>
@@ -17,4 +15,3 @@ export default function App() {
       </BrowserRouter>
     </ThemeProvider>
   );
-}
