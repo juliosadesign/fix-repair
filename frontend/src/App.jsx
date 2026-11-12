@@ -4,6 +4,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import { LessonWorkspace } from './pages/LessonWorkspace/index.jsx';
+
+export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
@@ -15,3 +17,4 @@ import { LessonWorkspace } from './pages/LessonWorkspace/index.jsx';
       </BrowserRouter>
     </ThemeProvider>
   );
+}
