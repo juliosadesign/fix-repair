@@ -1,18 +1,54 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
-import { mockTracks } from './data/mockTracks';
 import { 
   ArrowLeft, Lock, Unlock, CheckCircle2, Play, BookOpen, 
   Code2, CheckSquare, Sparkles, Send, Power, Lightbulb, 
-  Bug, HelpCircle, RotateCcw, Terminal, XCircle, BookmarkCheck, ArrowRight 
+  Bug, RotateCcw, Terminal, XCircle, BookmarkCheck 
 } from 'lucide-react';
+
+const internalTracks = [
+  {
+    id: 'algoritmos',
+    step: '01',
+    title: 'Lógica e Algoritmos',
+    lang: 'Portugol',
+    lessons: [
+      { id: 1, title: 'Variáveis e Tipos de Dados', status: 'completed' },
+      { id: 2, title: 'Estruturas Condicionais (se / senao)', status: 'available' },
+      { id: 3, title: 'Laços de Repetição (enquanto / para)', status: 'locked' },
+      { id: 4, title: 'Vetores e Matrizes em Portugol', status: 'locked' }
+    ]
+  },
+  {
+    id: 'linguagem-c',
+    step: '02',
+    title: 'Programação Estruturada',
+    lang: 'C',
+    lessons: [
+      { id: 1, title: 'Sintaxe Básica, printf e scanf', status: 'completed' },
+      { id: 2, title: 'Condicionais if / else e switch em C', status: 'available' },
+      { id: 3, title: 'Funções e Escopo de Variáveis', status: 'locked' },
+      { id: 4, title: 'Introdução a Ponteiros', status: 'locked' }
+    ]
+  },
+  {
+    id: 'estrutura-dados',
+    step: '03',
+    title: 'Estrutura de Dados I',
+    lang: 'C',
+    lessons: [
+      { id: 1, title: 'Alocação Dinâmica e Structs', status: 'available' },
+      { id: 2, title: 'Listas Encadeadas', status: 'locked' },
+      { id: 3, title: 'Pilhas e Filas (LIFO / FIFO)', status: 'locked' }
+    ]
+  }
+];
 
 export function LessonWorkspace() {
   const { trackId, lessonId } = useParams();
-  const navigate = useNavigate();
 
-  const currentTrack = mockTracks.find(t => t.id === trackId) || mockTracks[0];
+  const currentTrack = internalTracks.find(t => t.id === trackId) || internalTracks[0];
   const [activeLessonId, setActiveLessonId] = useState(Number(lessonId) || currentTrack.lessons[0].id);
   
   const [freeMode, setFreeMode] = useState(false);
@@ -107,7 +143,6 @@ export function LessonWorkspace() {
       <Navbar />
 
       <main className="pt-20 px-4 sm:px-6 max-w-[1400px] mx-auto space-y-6">
-        {/* Topo */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-apple-border dark:border-dark-border">
           <div className="flex items-center gap-3">
             <Link to="/dashboard" className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:opacity-80">
@@ -130,7 +165,6 @@ export function LessonWorkspace() {
           </button>
         </div>
 
-        {/* 3 Colunas */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* Coluna 1: Aulas */}
@@ -167,7 +201,7 @@ export function LessonWorkspace() {
             <div className="p-1.5 rounded-2xl bg-black/5 dark:bg-white/5 inline-flex items-center gap-1">
               <button
                 onClick={() => { setActivityMode('code'); setFeedback({ status: null, message: '' }); }}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold ${activityMode === 'code' ? 'bg-apple-card dark:bg-dark-card shadow-sm' : ' opacity-70'}`}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold ${activityMode === 'code' ? 'bg-apple-card dark:bg-dark-card shadow-sm' : 'opacity-70'}`}
               >
                 <Code2 className="w-3.5 h-3.5 text-blue-500" /> Algoritmo Prático
               </button>
